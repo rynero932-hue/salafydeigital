@@ -2746,7 +2746,7 @@ initApp();
 // ============================================================
 
 // SUPABASE
-const SURL='https://kkwvtwfxtuaqtjrclfyt.supabase.co';
+// SURL already defined above
 const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtrd3Z0d2Z4dHVhcXRqcmNsZnl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3MDcwMDUsImV4cCI6MjA4OTI4MzAwNX0.c5XJs6GceR0NQ0MWVq1sCOnI0jLkmfXXxT_SwnmVjMg';
 let sb=null, sbReady=false;
 try { sb=window.supabase.createClient(SURL,SKEY); sbReady=true; chkSession(); } catch(e){}
