@@ -830,15 +830,15 @@ function closeAuth(){
 
 // TABS
 function go(tab){
-  const isMasuk=tab==='masuk';
-  document.getElementById('tabIn').className='tab'+(isMasuk?' on':'');
-  document.getElementById('tabUp').className='tab'+(!isMasuk?' on':'');
-  document.getElementById('pIn').className='panel'+(isMasuk?' on':'');
-  document.getElementById('pUp').className='panel'+(!isMasuk?' on':'');
-  document.getElementById('footIn').style.display=isMasuk?'block':'none';
-  document.getElementById('footUp').style.display=isMasuk?'none':'block';
+  // Tab daftar sudah dihapus, hanya masuk yang tersedia
+  const tabIn=document.getElementById('tabIn');
+  const pIn=document.getElementById('pIn');
+  const footIn=document.getElementById('footIn');
+  if(tabIn) tabIn.className='tab on';
+  if(pIn) pIn.className='panel on';
+  if(footIn) footIn.style.display='block';
 }
-document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
+if(document.getElementById('tabIn')) document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
 // Sign up disabled by Super Admin
 
 // ALERTS
@@ -846,7 +846,7 @@ function alert2(id,msg,t){const e=document.getElementById(id);e.className='alert
 function setLoad(id,v){const b=document.getElementById(id);b.disabled=v;b.classList.toggle('loading',v);}
 
 // ROLE
-function roleLabel(r){return({'kepala_mahad':"🏅 Kepala Ma'had",'ustadz':'📖 Ustadz','ustadzah':'📗 Ustadzah','admin':'💻 Admin TU','super_admin':'⚙️ Super Admin','wali_santri':'🏡 Wali Santri','kepala_sekolah':"🏅 Kepala Ma'had"})[r]||'🕌 Pengguna';}
+function roleLabel(r){return({'kepala_mahad':"🏅 Kepala Mahad",'ustadz':'📖 Ustadz','ustadzah':'📗 Ustadzah','admin':'💻 Admin TU','super_admin':'⚙️ Super Admin','wali_santri':'🏡 Wali Santri','kepala_sekolah':"🏅 Kepala Mahad"})[r]||'🕌 Pengguna';}
 function roleIco(r){return({'kepala_mahad':'🏅','ustadz':'📖','ustadzah':'📗','admin':'💻','super_admin':'⚙️','wali_santri':'🏡','kepala_sekolah':'🏅'})[r]||'🕌';}
 
 // SHOW LOGGED IN
@@ -938,7 +938,7 @@ function demoLogin(email,pass){
     const u=users.find(function(u){return u.email===email&&u.password===btoa(pass);});
     setLoad('btnIn',false);
     if(!u){
-      if(email==='demo@mds.id'&&pass==='demo1234'){alert2('okIn','✅ Masuk sebagai demo!','ok');setTimeout(function(){showUser({email:'demo@mds.id',user_metadata:{full_name:"Demo Kepala Ma'had",role:'kepala_mahad'},id:'demo-001'});},600);return;}
+      if(email==='demo@mds.id'&&pass==='demo1234'){showUser({email:'demo@mds.id',user_metadata:{full_name:'Demo Kepala Mahad',role:'kepala_mahad'},id:'demo-001'});return;}
       alert2('errIn','Email atau password salah. Demo: demo@mds.id / demo1234');return;
     }
     alert2('okIn','✅ Berhasil masuk!','ok');
@@ -2628,12 +2628,12 @@ document.getElementById('formPengaturan').addEventListener('submit', async e=>{
   DB.settings.kepalaSekolah=document.getElementById('setKepalaSekolah').value;
   DB.settings.tahunAjaran=document.getElementById('setTahunAjaran').value;
   DB.settings.sppNominal=parseFloat(document.getElementById('setSPP').value)||250000;
-  document.getElementById('userName').textContent=DB.settings.kepalaSekolah||'Kepala Ma'had 👋';
+  document.getElementById('userName').textContent=DB.settings.kepalaSekolah||"Kepala Mahad 👋";
   showToast('Pengaturan berhasil disimpan ✅');
 });
 document.getElementById('btnResetData').addEventListener('click', ()=>{
   confirmDelete('Reset SEMUA data ke awal? Ini tidak dapat dibatalkan!', ()=>{
-    localStorage.removeItem('mds_data'); location.reload();
+    localStorage.clear(); location.reload();
   });
 });
 
@@ -2714,7 +2714,7 @@ async function initApp() {
   await loadData();
   updateDate();
   renderDashboard();
-  if (DB.settings.kepalaSekolah) document.getElementById('userName').textContent=DB.settings.kepalaSekolah;
+  if (DB.settings&&DB.settings.kepalaSekolah) document.getElementById('userName').textContent=DB.settings.kepalaSekolah;
 }
 initApp();
 
@@ -2789,15 +2789,15 @@ function closeAuth(){
 
 // TABS
 function go(tab){
-  const isMasuk=tab==='masuk';
-  document.getElementById('tabIn').className='tab'+(isMasuk?' on':'');
-  document.getElementById('tabUp').className='tab'+(!isMasuk?' on':'');
-  document.getElementById('pIn').className='panel'+(isMasuk?' on':'');
-  document.getElementById('pUp').className='panel'+(!isMasuk?' on':'');
-  document.getElementById('footIn').style.display=isMasuk?'block':'none';
-  document.getElementById('footUp').style.display=isMasuk?'none':'block';
+  // Tab daftar sudah dihapus, hanya masuk yang tersedia
+  const tabIn=document.getElementById('tabIn');
+  const pIn=document.getElementById('pIn');
+  const footIn=document.getElementById('footIn');
+  if(tabIn) tabIn.className='tab on';
+  if(pIn) pIn.className='panel on';
+  if(footIn) footIn.style.display='block';
 }
-document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
+if(document.getElementById('tabIn')) document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
 // Sign up disabled by Super Admin
 
 // ALERTS
@@ -2805,7 +2805,7 @@ function alert2(id,msg,t){const e=document.getElementById(id);e.className='alert
 function setLoad(id,v){const b=document.getElementById(id);b.disabled=v;b.classList.toggle('loading',v);}
 
 // ROLE
-function roleLabel(r){return({'kepala_mahad':"🏅 Kepala Ma'had",'ustadz':'📖 Ustadz','ustadzah':'📗 Ustadzah','admin':'💻 Admin TU','super_admin':'⚙️ Super Admin','wali_santri':'🏡 Wali Santri','kepala_sekolah':"🏅 Kepala Ma'had"})[r]||'🕌 Pengguna';}
+function roleLabel(r){return({'kepala_mahad':"🏅 Kepala Mahad",'ustadz':'📖 Ustadz','ustadzah':'📗 Ustadzah','admin':'💻 Admin TU','super_admin':'⚙️ Super Admin','wali_santri':'🏡 Wali Santri','kepala_sekolah':"🏅 Kepala Mahad"})[r]||'🕌 Pengguna';}
 function roleIco(r){return({'kepala_mahad':'🏅','ustadz':'📖','ustadzah':'📗','admin':'💻','super_admin':'⚙️','wali_santri':'🏡','kepala_sekolah':'🏅'})[r]||'🕌';}
 
 // SHOW LOGGED IN
@@ -2897,7 +2897,7 @@ function demoLogin(email,pass){
     const u=users.find(function(u){return u.email===email&&u.password===btoa(pass);});
     setLoad('btnIn',false);
     if(!u){
-      if(email==='demo@mds.id'&&pass==='demo1234'){alert2('okIn','✅ Masuk sebagai demo!','ok');setTimeout(function(){showUser({email:'demo@mds.id',user_metadata:{full_name:"Demo Kepala Ma'had",role:'kepala_mahad'},id:'demo-001'});},600);return;}
+      if(email==='demo@mds.id'&&pass==='demo1234'){showUser({email:'demo@mds.id',user_metadata:{full_name:'Demo Kepala Mahad',role:'kepala_mahad'},id:'demo-001'});return;}
       alert2('errIn','Email atau password salah. Demo: demo@mds.id / demo1234');return;
     }
     alert2('okIn','✅ Berhasil masuk!','ok');
@@ -3848,12 +3848,12 @@ document.getElementById('formPengaturan').addEventListener('submit', async e=>{
   DB.settings.kepalaSekolah=document.getElementById('setKepalaSekolah').value;
   DB.settings.tahunAjaran=document.getElementById('setTahunAjaran').value;
   DB.settings.sppNominal=parseFloat(document.getElementById('setSPP').value)||250000;
-  document.getElementById('userName').textContent=DB.settings.kepalaSekolah||'Kepala Ma'had 👋';
+  document.getElementById('userName').textContent=DB.settings.kepalaSekolah||"Kepala Mahad 👋";
   showToast('Pengaturan berhasil disimpan ✅');
 });
 document.getElementById('btnResetData').addEventListener('click', ()=>{
   confirmDelete('Reset SEMUA data ke awal? Ini tidak dapat dibatalkan!', ()=>{
-    localStorage.removeItem('mds_data'); location.reload();
+    localStorage.clear(); location.reload();
   });
 });
 
@@ -3934,7 +3934,7 @@ async function initApp() {
   await loadData();
   updateDate();
   renderDashboard();
-  if (DB.settings.kepalaSekolah) document.getElementById('userName').textContent=DB.settings.kepalaSekolah;
+  if (DB.settings&&DB.settings.kepalaSekolah) document.getElementById('userName').textContent=DB.settings.kepalaSekolah;
 }
 initApp();
 
