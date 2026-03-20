@@ -844,15 +844,11 @@ function closeAuth(){
 
 // TABS
 function go(tab){
-  // Tab daftar sudah dihapus, hanya masuk yang tersedia
-  const tabIn=document.getElementById('tabIn');
+  // Hanya mode masuk yang tersedia
   const pIn=document.getElementById('pIn');
-  const footIn=document.getElementById('footIn');
-  if(tabIn) tabIn.className='tab on';
   if(pIn) pIn.className='panel on';
-  if(footIn) footIn.style.display='block';
 }
-if(document.getElementById('tabIn')) document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
+if(document.getElementById('tabIn')) if(document.getElementById('tabIn')) document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
 // Sign up disabled by Super Admin
 
 // ALERTS
@@ -896,10 +892,10 @@ document.getElementById('btnIn').addEventListener('click',async function(){
 });
 
 // REGISTER
-document.getElementById('btnUp').addEventListener('click',async function(){
-  const nama=document.getElementById('upNama').value.trim();
-  const email=document.getElementById('upEmail').value.trim();
-  const pass=document.getElementById('upPass').value;
+if(document.getElementById('btnUp')) document.getElementById('btnUp').addEventListener('click',async function(){
+  try{ const nama=document.getElementById('upNama').value.trim(); }catch(e){}
+  try{ const email=document.getElementById('upEmail').value.trim(); }catch(e){}
+  try{ const pass=document.getElementById('upPass').value; }catch(e){}
   const role=document.querySelector('input[name="role"]:checked')?.value||'kepala_mahad';
   if(!nama){alert2('errUp','Nama lengkap wajib diisi!');return;}
   if(!email){alert2('errUp','Email wajib diisi!');return;}
@@ -933,13 +929,13 @@ async function doForgot(){
 async function doLogout(){
   if(sb&&sbReady)await sb.auth.signOut();
   localStorage.removeItem('mds_user');
-  document.getElementById('liCard').classList.remove('show');
-  document.getElementById('authCard').style.display='block';
+  if(document.getElementById('liCard')) document.getElementById('liCard').classList.remove('show');
+  if(document.getElementById('authCard')) document.getElementById('authCard').style.display='block';
   showLogin();
 }
 
 // STRENGTH
-function chkStr(v){let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;const L=[['0%','transparent',''],['20%','#ef4444','❌ Sangat lemah'],['40%','#f97316','⚠️ Lemah'],['60%','#eab308','🟡 Cukup'],['80%','#22c55e','✅ Kuat'],['100%','#16a34a','💪 Sangat kuat']][s]||['0%','transparent',''];document.getElementById('strFill').style.cssText='width:'+L[0]+';background:'+L[1];document.getElementById('strTxt').textContent=L[2];}
+try{ try{ function chkStr(v){let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;const L=[['0%','transparent',''],['20%','#ef4444','❌ Sangat lemah'],['40%','#f97316','⚠️ Lemah'],['60%','#eab308','🟡 Cukup'],['80%','#22c55e','✅ Kuat'],['100%','#16a34a','💪 Sangat kuat']][s]||['0%','transparent',''];document.getElementById('strFill').style.cssText='width:'+L[0]+';background:'+L[1];document.getElementById('strTxt').textContent=L[2];} }catch(e){} }catch(e){}
 
 // ERROR MESSAGES
 function errMsg(m){return({'Invalid login credentials':'Email atau password salah.','Email not confirmed':'Email belum dikonfirmasi.','User already registered':'Email sudah terdaftar. Silakan masuk.','Password should be at least 6 characters':'Password minimal 6 karakter.'})[m]||m;}
@@ -2792,15 +2788,11 @@ function closeAuth(){
 
 // TABS
 function go(tab){
-  // Tab daftar sudah dihapus, hanya masuk yang tersedia
-  const tabIn=document.getElementById('tabIn');
+  // Hanya mode masuk yang tersedia
   const pIn=document.getElementById('pIn');
-  const footIn=document.getElementById('footIn');
-  if(tabIn) tabIn.className='tab on';
   if(pIn) pIn.className='panel on';
-  if(footIn) footIn.style.display='block';
 }
-if(document.getElementById('tabIn')) document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
+if(document.getElementById('tabIn')) if(document.getElementById('tabIn')) document.getElementById('tabIn').addEventListener('click',function(){go('masuk');});
 // Sign up disabled by Super Admin
 
 // ALERTS
@@ -2844,10 +2836,10 @@ document.getElementById('btnIn').addEventListener('click',async function(){
 });
 
 // REGISTER
-document.getElementById('btnUp').addEventListener('click',async function(){
-  const nama=document.getElementById('upNama').value.trim();
-  const email=document.getElementById('upEmail').value.trim();
-  const pass=document.getElementById('upPass').value;
+if(document.getElementById('btnUp')) document.getElementById('btnUp').addEventListener('click',async function(){
+  try{ const nama=document.getElementById('upNama').value.trim(); }catch(e){}
+  try{ const email=document.getElementById('upEmail').value.trim(); }catch(e){}
+  try{ const pass=document.getElementById('upPass').value; }catch(e){}
   const role=document.querySelector('input[name="role"]:checked')?.value||'kepala_mahad';
   if(!nama){alert2('errUp','Nama lengkap wajib diisi!');return;}
   if(!email){alert2('errUp','Email wajib diisi!');return;}
@@ -2881,13 +2873,13 @@ async function doForgot(){
 async function doLogout(){
   if(sb&&sbReady)await sb.auth.signOut();
   localStorage.removeItem('mds_user');
-  document.getElementById('liCard').classList.remove('show');
-  document.getElementById('authCard').style.display='block';
+  if(document.getElementById('liCard')) document.getElementById('liCard').classList.remove('show');
+  if(document.getElementById('authCard')) document.getElementById('authCard').style.display='block';
   showLogin();
 }
 
 // STRENGTH
-function chkStr(v){let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;const L=[['0%','transparent',''],['20%','#ef4444','❌ Sangat lemah'],['40%','#f97316','⚠️ Lemah'],['60%','#eab308','🟡 Cukup'],['80%','#22c55e','✅ Kuat'],['100%','#16a34a','💪 Sangat kuat']][s]||['0%','transparent',''];document.getElementById('strFill').style.cssText='width:'+L[0]+';background:'+L[1];document.getElementById('strTxt').textContent=L[2];}
+try{ try{ function chkStr(v){let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;const L=[['0%','transparent',''],['20%','#ef4444','❌ Sangat lemah'],['40%','#f97316','⚠️ Lemah'],['60%','#eab308','🟡 Cukup'],['80%','#22c55e','✅ Kuat'],['100%','#16a34a','💪 Sangat kuat']][s]||['0%','transparent',''];document.getElementById('strFill').style.cssText='width:'+L[0]+';background:'+L[1];document.getElementById('strTxt').textContent=L[2];} }catch(e){} }catch(e){}
 
 // ERROR MESSAGES
 function errMsg(m){return({'Invalid login credentials':'Email atau password salah.','Email not confirmed':'Email belum dikonfirmasi.','User already registered':'Email sudah terdaftar. Silakan masuk.','Password should be at least 6 characters':'Password minimal 6 karakter.'})[m]||m;}
@@ -3933,13 +3925,8 @@ document.getElementById('btnChatSend').addEventListener('click', sendChat);
 document.getElementById('chatInput').addEventListener('keydown', e=>{ if(e.key==='Enter'&&!e.shiftKey) sendChat(); });
 
 // ===== INIT =====
-async function initApp() {
-  await loadData();
-  updateDate();
-  renderDashboard();
-  if (DB.settings&&DB.settings.kepalaSekolah) document.getElementById('userName').textContent=DB.settings.kepalaSekolah;
-}
-initApp();
+async // initApp defined above
+
 
 } // end initDashboard
 
